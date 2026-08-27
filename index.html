@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Briana 🖤</title>
+<style>
+  :root{
+    --rosa-oscuro:#c9738f;
+    --rosa:#e8a7bb;
+    --rosa-claro:#f9e3ea;
+    --crema:#fff8f4;
+    --papel:#fffdf9;
+    --tinta:#4a3239;
+    --dorado:#d3a24a;
+    --negro:#161016;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 20% 20%, #fbe4ea 0%, transparent 45%),
+      radial-gradient(circle at 80% 80%, #f6d7e2 0%, transparent 45%),
+      var(--crema);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    overflow-x:hidden;
+    overflow-y:auto;
+    position:relative;
+    padding:220px 20px 60px;
+  }
+
+  /* Flores flotantes de fondo */
+  .flor-fondo{
+    position:fixed;
+    font-size:22px;
+    opacity:0.55;
+    animation: flotar 6s ease-in-out infinite, latir 2.4s ease-in-out infinite;
+    pointer-events:none;
+    filter: drop-shadow(0 2px 4px rgba(201,115,143,0.3));
+  }
+
+  @keyframes flotar{
+    0%,100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-18px) rotate(8deg); }
+  }
+  @keyframes latir{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.18); }
+  }
+
+  .escena{
+    position:relative;
+    width:min(420px, 90vw);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .titulo-intro{
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--rosa-oscuro);
+    margin-bottom:18px;
+    opacity:0;
+    animation: aparecer 1s ease forwards 0.3s;
+  }
+
+  @keyframes aparecer{
+    to{ opacity:1; }
+  }
+
+  /* SOBRE */
+  .sobre-wrap{
+    position:relative;
+    width:320px;
+    height:220px;
+    cursor:pointer;
+    perspective:1200px;
+  }
+
+  .sobre-cuerpo{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(160deg, var(--rosa-claro), #f3c7d3);
+    border-radius:6px;
+    box-shadow: 0 18px 40px -12px rgba(120,50,70,0.35);
+    z-index:2;
+    overflow:hidden;
+  }
+
+  .sobre-cuerpo::before{
+    /* pliegues laterales */
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(135deg, transparent 49.3%, rgba(120,45,65,0.12) 50%, transparent 50.7%),
+      linear-gradient(-135deg, transparent 49.3%, rgba(120,45,65,0.12) 50%, transparent 50.7%);
+  }
+
+  .sello{
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%,-42%);
+    font-size:34px;
+    z-index:3;
+    animation: latir 2.2s ease-in-out infinite;
+    filter: drop-shadow(0 3px 5px rgba(150,60,80,0.4));
+  }
+
+  .sobre-solapa{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:130px;
+    background: linear-gradient(160deg, #eab3c3, var(--rosa-oscuro));
+    clip-path: polygon(0 0, 100% 0, 50% 92%);
+    transform-origin: top center;
+    transform-style:preserve-3d;
+    transition: transform 1s cubic-bezier(.6,-0.28,.35,1.5);
+    z-index:5;
+    box-shadow: 0 6px 10px -4px rgba(90,30,45,0.3);
+  }
+
+  .sobre-wrap.abierto .sobre-solapa{
+    transform: rotateX(180deg);
+    z-index:1;
+  }
+
+  .carta{
+    position:absolute;
+    left:50%;
+    top:60px;
+    width:264px;
+    min-height:150px;
+    transform: translate(-50%, 0) scale(0.88);
+    background: var(--papel);
+    border-radius:4px;
+    box-shadow: 0 10px 30px -8px rgba(90,30,45,0.35);
+    padding:22px 20px 18px;
+    z-index:4;
+    opacity:0;
+    transition: all 1.15s cubic-bezier(.2,.8,.25,1);
+  }
+
+  .sobre-wrap.abierto .carta{
+    top: -190px;
+    transform: translate(-50%, 0) scale(1.08);
+    opacity:1;
+    box-shadow: 0 25px 50px -15px rgba(90,30,45,0.3);
+  }
+
+  .carta::before{
+    content:'';
+    position:absolute;
+    top:14px; left:14px; right:14px;
+    height:1px;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 17px, rgba(201,115,143,0.18) 17px, rgba(201,115,143,0.18) 18px);
+    height:110px;
+    pointer-events:none;
+  }
+
+  .encabezado-carta{
+    font-size:19px;
+    color:var(--rosa-oscuro);
+    font-weight:bold;
+    letter-spacing:0.5px;
+    margin-bottom:10px;
+    position:relative;
+  }
+
+  .cuerpo-carta{
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--tinta);
+    position:relative;
+  }
+
+  .firma{
+    margin-top:14px;
+    font-size:11px;
+    color:var(--rosa-oscuro);
+    font-style:italic;
+    opacity:0.85;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+
+  .corazon-negro{
+    font-size:14px;
+    display:inline-block;
+    animation: latir 1.6s ease-in-out infinite;
+  }
+
+  .flor-carta{
+    position:absolute;
+    font-size:16px;
+    opacity:0;
+    animation: latir 2.2s ease-in-out infinite;
+  }
+
+  .instruccion{
+    margin-top:26px;
+    font-size:12.5px;
+    color:var(--rosa-oscuro);
+    opacity:0.75;
+    letter-spacing:0.5px;
+    text-align:center;
+    transition: opacity 0.6s ease;
+  }
+
+  .sobre-wrap.abierto ~ .instruccion{
+    opacity:0;
+  }
+
+  @media (max-width:420px){
+    .sobre-wrap{ width:270px; height:190px; }
+    .sobre-solapa{ height:112px; }
+    .carta{ width:220px; top:48px; }
+    .sobre-wrap.abierto .carta{ top:-165px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="escena">
+  <div class="titulo-intro">tienes una carta</div>
+
+  <div class="sobre-wrap" id="sobre">
+    <div class="sobre-cuerpo">
+      <div class="sello">🌸</div>
+    </div>
+    <div class="sobre-solapa"></div>
+
+    <div class="carta">
+      <div class="encabezado-carta">Para Briana linda 🌷</div>
+      <div class="cuerpo-carta">
+        Gracias por acompañarme y por tu amistad tan bonita.
+        En estos días tan malos para mí, has sido de esas
+        personas que hacen todo un poco más ligero. Te aprecio
+        muchísimo, de verdad.
+        <div class="firma">
+          la gatubela de mi batiuniverso <span class="corazon-negro">🖤</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="instruccion">toca el sobre para abrirlo ✨</div>
+</div>
+
+<script>
+  const sobre = document.getElementById('sobre');
+  sobre.addEventListener('click', () => {
+    sobre.classList.toggle('abierto');
+    if (sobre.classList.contains('abierto')) {
+      lanzarFlores();
+    }
+  });
+
+  const emojisFlor = ['🌸','🌷','💮','🌹'];
+  function lanzarFlores(){
+    for(let i=0;i<14;i++){
+      setTimeout(()=>{
+        const f = document.createElement('div');
+        f.className = 'flor-fondo';
+        f.textContent = emojisFlor[Math.floor(Math.random()*emojisFlor.length)];
+        const startX = Math.random()*100;
+        f.style.left = startX + 'vw';
+        f.style.top = (60 + Math.random()*20) + 'vh';
+        f.style.fontSize = (16 + Math.random()*14) + 'px';
+        f.style.animationDuration = (4+Math.random()*3)+'s, '+(1.8+Math.random()*1.2)+'s';
+        document.body.appendChild(f);
+        // que suban y se desvanezcan
+        f.animate([
+          { transform:'translateY(0)', opacity:0 },
+          { transform:'translateY(-40px)', opacity:1, offset:0.15 },
+          { transform:'translateY(-260px)', opacity:0 }
+        ], { duration: 4200 + Math.random()*1800, easing:'ease-out' });
+        setTimeout(()=>f.remove(), 6200);
+      }, i*140);
+    }
+  }
+</script>
+
+</body>
+</html>
